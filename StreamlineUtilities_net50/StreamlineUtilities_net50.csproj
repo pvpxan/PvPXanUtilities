@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>StreamlineUtilities</AssemblyName>
+    <RootNamespace>sStreamlineUtilities_net50</RootNamespace>
+    <Version>1.0.0.1</Version>
+    <Company>PvPXan Productions</Company>
+    <Authors>David Bentley</Authors>
+    <Description>Common Tools an Utilities</Description>
+    <Copyright>Copyright ©  2021</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/pvpxan/StreamlineUtilities</PackageProjectUrl>
+  </PropertyGroup>
+
+</Project>
