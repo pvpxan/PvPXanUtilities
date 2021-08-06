@@ -56,7 +56,7 @@
     <Compile Include="LogWriterConsole.cs" />
     <Compile Include="LogWriterExtended.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="_LogStreamline\LogStreamline.cs" />
+    <Compile Include="_LogUtilities\LogUtilities.cs" />
     <Compile Include="RegexFunctions.cs" />
     <Compile Include="SMTP\SMTPMain.cs" />
     <Compile Include="SMTP\SMTPTypes.cs" />

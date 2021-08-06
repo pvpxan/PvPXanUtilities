@@ -54,7 +54,7 @@ namespace StreamlineUtilities
                 }
                 catch (Exception Ex)
                 {
-                    LogStreamline.Exception("Error deleting file: " + file, Ex);
+                    LogUtilities.Exception("Error deleting file: " + file, Ex);
                     return false;
                 }
             }
@@ -71,7 +71,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("Error copying source file: " + fileSource + " to target desitnation path: " + fileTarget, Ex);
+                LogUtilities.Exception("Error copying source file: " + fileSource + " to target desitnation path: " + fileTarget, Ex);
                 return false;
             }
         }
@@ -85,7 +85,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("Error creating directory: : " + directory, Ex);
+                LogUtilities.Exception("Error creating directory: : " + directory, Ex);
                 return false;
             }
         }
@@ -106,7 +106,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("Error processing Copy method.", Ex);
+                LogUtilities.Exception("Error processing Copy method.", Ex);
             }
 
             return output.ToArray();
@@ -135,7 +135,7 @@ namespace StreamlineUtilities
                     {
                         fileResult.Success = false;
 
-                        LogStreamline.Exception("Failed to copy file: " + fi.FullName, Ex);
+                        LogUtilities.Exception("Failed to copy file: " + fi.FullName, Ex);
                     }
 
                     output.Add(fileResult);
@@ -155,13 +155,13 @@ namespace StreamlineUtilities
                     }
                     catch (Exception Ex)
                     {
-                        LogStreamline.Exception("Error with creating subdirectory: " + diSourceSubDir.Name, Ex);
+                        LogUtilities.Exception("Error with creating subdirectory: " + diSourceSubDir.Name, Ex);
                     }
                 }
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("Error processing Copy method.", Ex);
+                LogUtilities.Exception("Error processing Copy method.", Ex);
             }
 
             return output;

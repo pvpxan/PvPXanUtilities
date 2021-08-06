@@ -35,7 +35,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("Error reading config. Key: " + key, Ex);
+                LogUtilities.Exception("Error reading config. Key: " + key, Ex);
                 return "";
             }
         }
@@ -64,7 +64,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("Error loading config file for writing. Key: " + key + " | Value: " + value, Ex);
+                LogUtilities.Exception("Error loading config file for writing. Key: " + key + " | Value: " + value, Ex);
                 return false;
             }
 
@@ -81,7 +81,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("Error staging data for writing to config file. Key: " + key + " | Value: " + value, Ex);
+                LogUtilities.Exception("Error staging data for writing to config file. Key: " + key + " | Value: " + value, Ex);
                 return false;
             }
 
@@ -93,7 +93,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("Error saving data to config file. Key: " + key + " | Value: " + value, Ex);
+                LogUtilities.Exception("Error saving data to config file. Key: " + key + " | Value: " + value, Ex);
                 return false;
             }
 

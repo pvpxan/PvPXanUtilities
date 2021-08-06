@@ -61,7 +61,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("HTTP Exception: Error running Data Request task.", Ex);
+                LogUtilities.Exception("HTTP Exception: Error running Data Request task.", Ex);
             }
         }
     }
