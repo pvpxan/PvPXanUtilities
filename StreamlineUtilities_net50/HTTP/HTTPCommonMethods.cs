@@ -22,7 +22,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("HTTP Exception: Error attempting to dispose of a used cancellation token source.", Ex);
+                LogUtilities.Exception("HTTP Exception: Error attempting to dispose of a used cancellation token source.", Ex);
             }
 
             source = new CancellationTokenSource();
@@ -44,7 +44,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("HTTP Exception: Error parsing file name from URL: " + url, Ex);
+                LogUtilities.Exception("HTTP Exception: Error parsing file name from URL: " + url, Ex);
             }
 
             return fileName;
@@ -82,7 +82,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("HTTP Exception: Error trying to creating HTTP Web Request. Url: " + httpRequest.URL, Ex);
+                LogUtilities.Exception("HTTP Exception: Error trying to creating HTTP Web Request. Url: " + httpRequest.URL, Ex);
                 return cleanup(httpConnectionData, true);
             }
 
@@ -156,7 +156,7 @@ namespace StreamlineUtilities
                 catch (Exception Ex)
                 {
                     requestWritten = false;
-                    LogStreamline.Exception("HTTP Exception: Error attempting to write to request stream. Url: " + httpRequest.URL, Ex);
+                    LogUtilities.Exception("HTTP Exception: Error attempting to write to request stream. Url: " + httpRequest.URL, Ex);
                 }
                 finally
                 {
@@ -179,7 +179,7 @@ namespace StreamlineUtilities
                 httpConnectionData.WebResponse = (HttpWebResponse)httpConnectionData.WebRequest.GetResponse();
                 if (httpConnectionData.WebResponse == null)
                 {
-                    LogStreamline.LogEntry("HTTP Error: Failed to process HTTP Web Request. Response is null. Url: " + httpRequest.URL);
+                    LogUtilities.LogEntry("HTTP Error: Failed to process HTTP Web Request. Response is null. Url: " + httpRequest.URL);
                     return cleanup(httpConnectionData, true);
                 }
             }
@@ -196,7 +196,7 @@ namespace StreamlineUtilities
                     }
                     catch (Exception Ex)
                     {
-                        LogStreamline.Exception("HTTP Exception: Error trying to read response status code from Web Exception. Url: " + httpRequest.URL, Ex);
+                        LogUtilities.Exception("HTTP Exception: Error trying to read response status code from Web Exception. Url: " + httpRequest.URL, Ex);
                     }
                 }
 
@@ -242,13 +242,13 @@ namespace StreamlineUtilities
                     logError = logError + Environment.NewLine + "Request String:" + Environment.NewLine + "   " + httpRequest.RequestString;
                 }
 
-                LogStreamline.Exception(logError, WebEx);
+                LogUtilities.Exception(logError, WebEx);
                 
                 return cleanup(httpConnectionData, true);
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("HTTP Exception: General error when attempting to get response. Url: " + httpRequest.URL, Ex);
+                LogUtilities.Exception("HTTP Exception: General error when attempting to get response. Url: " + httpRequest.URL, Ex);
                 return cleanup(httpConnectionData, true);
             }
 
@@ -263,12 +263,12 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("HTTP Exception: Error trying to read response status code. Url: " + httpRequest.URL, Ex);
+                LogUtilities.Exception("HTTP Exception: Error trying to read response status code. Url: " + httpRequest.URL, Ex);
             }
 
             if (httpConnectionData.StatusCode != 200)
             {
-                LogStreamline.LogEntry("HTTP Error: Bad response: " + Convert.ToString(httpConnectionData.StatusCode) + ". URL: " + httpRequest.URL);
+                LogUtilities.LogEntry("HTTP Error: Bad response: " + Convert.ToString(httpConnectionData.StatusCode) + ". URL: " + httpRequest.URL);
                 return cleanup(httpConnectionData, true);
             }
 
@@ -277,13 +277,13 @@ namespace StreamlineUtilities
                 httpConnectionData.ResponseStream = httpConnectionData.WebResponse.GetResponseStream();
                 if (httpConnectionData.ResponseStream == null)
                 {
-                    LogStreamline.LogEntry("HTTP Error: Null response stream. URL: " + httpRequest.URL);
+                    LogUtilities.LogEntry("HTTP Error: Null response stream. URL: " + httpRequest.URL);
                     return cleanup(httpConnectionData, true);
                 }
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("HTTP Exception. Error trying to read response stream. Url: " + httpRequest.URL, Ex);
+                LogUtilities.Exception("HTTP Exception. Error trying to read response stream. Url: " + httpRequest.URL, Ex);
                 return cleanup(httpConnectionData, true);
             }
 
@@ -296,7 +296,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("HTTP Exception: Error trying to get Content-Length from header data. Url: " + httpRequest.URL, Ex);
+                LogUtilities.Exception("HTTP Exception: Error trying to get Content-Length from header data. Url: " + httpRequest.URL, Ex);
             }
 
             return httpConnectionData;
@@ -325,7 +325,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("HTTP Exception: Stream to array reader encountered an issue.", Ex);
+                LogUtilities.Exception("HTTP Exception: Stream to array reader encountered an issue.", Ex);
             }
             finally
             {
@@ -356,7 +356,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("HTTP Exception: Stream to string reader encountered an issue.", Ex);
+                LogUtilities.Exception("HTTP Exception: Stream to string reader encountered an issue.", Ex);
                 return "";
             }
             finally
@@ -380,7 +380,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("HTTP Exception: Error parsing header collection.", Ex);
+                LogUtilities.Exception("HTTP Exception: Error parsing header collection.", Ex);
             }
 
             return httpHeaderList.ToArray();
@@ -405,12 +405,12 @@ namespace StreamlineUtilities
                 }
                 else
                 {
-                    LogStreamline.LogEntry("HTTP Error: Size request failure. Web response is null. Url: " + url);
+                    LogUtilities.LogEntry("HTTP Error: Size request failure. Web response is null. Url: " + url);
                 }
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("HTTP Exception: Error processing size request. Url: " + url, Ex);
+                LogUtilities.Exception("HTTP Exception: Error processing size request. Url: " + url, Ex);
             }
             finally
             {
@@ -451,11 +451,18 @@ namespace StreamlineUtilities
                         httpResponse = httpCompleteData as HTTPResponse;
                     }
 
-                    DataRequestComplete(this, new HTTPResponse()
+                    try
                     {
-                        Response = httpResponse.Response,
-                        StatusCode = httpResponse.StatusCode,
-                    });
+                        DataRequestComplete(this, new HTTPResponse()
+                        {
+                            Response = httpResponse.Response,
+                            StatusCode = httpResponse.StatusCode,
+                        });
+                    }
+                    catch (Exception Ex)
+                    {
+                        LogUtilities.Exception("HTTP Exception: Error running DataRequestComplete delegate.", Ex);
+                    }
 
                     break;
 
@@ -477,6 +484,19 @@ namespace StreamlineUtilities
                         Error = httpReadComplete.Error,
                     });
 
+                    try
+                    {
+                        FileReadComplete(this, new HTTPReadComplete()
+                        {
+                            FileLines = httpReadComplete.FileLines,
+                            Error = httpReadComplete.Error,
+                        });
+                    }
+                    catch (Exception Ex)
+                    {
+                        LogUtilities.Exception("HTTP Exception: Error running FileReadComplete delegate.", Ex);
+                    }
+
                     break;
 
                 case HTTPType.Download:
@@ -491,14 +511,21 @@ namespace StreamlineUtilities
                         httpComplete = httpCompleteData as HTTPComplete;
                     }
 
-                    DownloadComplete(this, new HTTPComplete()
+                    try
                     {
-                        PayLoadSize = httpComplete.PayLoadSize,
-                        PercentageComplete = httpComplete.PercentageComplete,
-                        BytesReceived = httpComplete.BytesReceived,
-                        Cancelled = httpComplete.Cancelled,
-                        Error = httpComplete.Error,
-                    });
+                        DownloadComplete(this, new HTTPComplete()
+                        {
+                            PayLoadSize = httpComplete.PayLoadSize,
+                            PercentageComplete = httpComplete.PercentageComplete,
+                            BytesReceived = httpComplete.BytesReceived,
+                            Cancelled = httpComplete.Cancelled,
+                            Error = httpComplete.Error,
+                        });
+                    }
+                    catch (Exception Ex)
+                    {
+                        LogUtilities.Exception("HTTP Exception: Error running DownloadComplete delegate.", Ex);
+                    }
 
                     break;
             }
@@ -557,7 +584,7 @@ namespace StreamlineUtilities
             catch (Exception Ex)
             {
                 // The above may fail is the task is somehow dead locked. Will look into this more.
-                LogStreamline.Exception("HTTP Exception: Error with disposing resources.", Ex);
+                LogUtilities.Exception("HTTP Exception: Error with disposing resources.", Ex);
             }
         }
     }

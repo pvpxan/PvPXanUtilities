@@ -35,7 +35,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("SMTP Exception: Error in email credential check function.", Ex);
+                LogUtilities.Exception("SMTP Exception: Error in email credential check function.", Ex);
                 return false;
             }
         }
@@ -120,7 +120,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("SMTP Exception: Error generating message attachment.", Ex);
+                LogUtilities.Exception("SMTP Exception: Error generating message attachment.", Ex);
                 return null;
             }
         }
@@ -253,7 +253,7 @@ namespace StreamlineUtilities
                 string error = "SMTP Exception: Error when building MailMessage.";
                 emailSendResult.Status = EmailSendStatus.Failed;
                 emailSendResult.MessageAdd(error);
-                LogStreamline.Exception(error, Ex);
+                LogUtilities.Exception(error, Ex);
             }
             finally
             {
@@ -299,7 +299,7 @@ namespace StreamlineUtilities
 
                 }
 
-                LogStreamline.Exception(error, Ex);
+                LogUtilities.Exception(error, Ex);
                 return error;
             }
             finally
@@ -325,7 +325,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("SMTP Exception: Error in email address format validation function. Address: " + emailAddress, Ex);
+                LogUtilities.Exception("SMTP Exception: Error in email address format validation function. Address: " + emailAddress, Ex);
                 return false;
             }
         }
@@ -344,7 +344,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("SMTP Exception: Error processing regex match check of string: " + input, Ex);
+                LogUtilities.Exception("SMTP Exception: Error processing regex match check of string: " + input, Ex);
                 return false;
             }
         }
@@ -392,7 +392,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("SMTP Exception: Error processing address: " + address, Ex);
+                LogUtilities.Exception("SMTP Exception: Error processing address: " + address, Ex);
                 return "";
             }
         }

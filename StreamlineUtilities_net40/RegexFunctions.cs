@@ -59,7 +59,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("Error processing regex match check of string. Input: " + input + " |  Pattern: " + pattern, Ex);
+                LogUtilities.Exception("Error processing regex match check of string. Input: " + input + " |  Pattern: " + pattern, Ex);
                 return false;
             }
         }
@@ -129,7 +129,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("Error processing regex replacement. Input: " + input + " |  Pattern: " + pattern + " | Replacement: " + replacement, Ex);
+                LogUtilities.Exception("Error processing regex replacement. Input: " + input + " |  Pattern: " + pattern + " | Replacement: " + replacement, Ex);
                 return "";
             }
         }

@@ -44,7 +44,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("HTTP Exception: Error running Download task.", Ex);
+                LogUtilities.Exception("HTTP Exception: Error running Download task.", Ex);
             }
         }
 
@@ -56,14 +56,14 @@ namespace StreamlineUtilities
             if (string.IsNullOrEmpty(filePath))
             {
                 httpComplete.Error = true;
-                LogStreamline.LogEntry("HTTP Error: Download failed. Destination path cannot be null or empty.");
+                LogUtilities.LogEntry("HTTP Error: Download failed. Destination path cannot be null or empty.");
                 return httpComplete;
             }
 
             if (File.Exists(filePath) && overwrite == false)
             {
                 httpComplete.Error = true;
-                LogStreamline.LogEntry("HTTP Error: Download failed. Destination path exists and overwrite is set to false.");
+                LogUtilities.LogEntry("HTTP Error: Download failed. Destination path exists and overwrite is set to false.");
                 return httpComplete;
             }
 
@@ -75,7 +75,7 @@ namespace StreamlineUtilities
             catch (Exception Ex)
             {
                 httpComplete.Error = true;
-                LogStreamline.Exception("HTTP Exception: Download failed. Unable to parse path from destination parameter. Path: " + filePath, Ex);
+                LogUtilities.Exception("HTTP Exception: Download failed. Unable to parse path from destination parameter. Path: " + filePath, Ex);
                 return httpComplete;
             }
 
@@ -88,7 +88,7 @@ namespace StreamlineUtilities
                 catch (Exception Ex)
                 {
                     httpComplete.Error = true;
-                    LogStreamline.Exception("HTTP Exception: Download failed. Error creating directory to save file. Path: " + filePath, Ex);
+                    LogUtilities.Exception("HTTP Exception: Download failed. Error creating directory to save file. Path: " + filePath, Ex);
                     return httpComplete;
                 }
             }
@@ -115,14 +115,14 @@ namespace StreamlineUtilities
             catch (Exception Ex)
             {
                 httpComplete.Error = true;
-                LogStreamline.Exception("HTTP Exception: Download failed. Error opening write stream to file. Path: " + filePath, Ex);
+                LogUtilities.Exception("HTTP Exception: Download failed. Error opening write stream to file. Path: " + filePath, Ex);
                 bufferStream = null;
             }
 
             if (bufferStream == null)
             {
                 httpComplete.Error = true;
-                LogStreamline.LogEntry("HTTP Exception: Download failed. Open write steam is null.");
+                LogUtilities.LogEntry("HTTP Exception: Download failed. Open write steam is null.");
                 return httpComplete;
             }
 
@@ -195,7 +195,7 @@ namespace StreamlineUtilities
             catch (Exception Ex)
             {
                 httpComplete.Error = true;
-                LogStreamline.Exception("HTTP Exception: Download failed. There was a problem reading HTTP file. Url: " + url, Ex);
+                LogUtilities.Exception("HTTP Exception: Download failed. There was a problem reading HTTP file. Url: " + url, Ex);
                 return httpComplete;
             }
             finally
@@ -224,7 +224,7 @@ namespace StreamlineUtilities
             if (File.Exists(filePath) == false)
             {
                 httpComplete.Error = true;
-                LogStreamline.LogEntry("HTTP Error: Download failed. File failed to download or write to disk.");
+                LogUtilities.LogEntry("HTTP Error: Download failed. File failed to download or write to disk.");
                 return httpComplete;
             }
 
@@ -255,7 +255,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("HTTP Exception: Download progress reporting error when calculating percentage. Total Bytes: " + Convert.ToString(totalBytes) + " | Current Bytes:" + Convert.ToString(currentBytes), Ex);
+                LogUtilities.Exception("HTTP Exception: Download progress reporting error when calculating percentage. Total Bytes: " + Convert.ToString(totalBytes) + " | Current Bytes:" + Convert.ToString(currentBytes), Ex);
             }
 
             return percentage;
@@ -279,7 +279,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("HTTP Exception: TaskWorker Error. Failed to run timeout task.", Ex);
+                LogUtilities.Exception("HTTP Exception: TaskWorker Error. Failed to run timeout task.", Ex);
             }
         }
 

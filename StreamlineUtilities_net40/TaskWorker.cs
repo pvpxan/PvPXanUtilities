@@ -60,7 +60,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("TaskWorker Error: Failed to run timeout task.", Ex);
+                LogUtilities.Exception("TaskWorker Error: Failed to run timeout task.", Ex);
             }
         }
 
@@ -124,7 +124,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("TaskWorker Error: Failed to run worker task.", Ex);
+                LogUtilities.Exception("TaskWorker Error: Failed to run worker task.", Ex);
             }
         }
 
@@ -199,7 +199,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("TaskWorker Error: Failed to run timeout task.", Ex);
+                LogUtilities.Exception("TaskWorker Error: Failed to run timeout task.", Ex);
             }
             finally
             {
@@ -251,7 +251,7 @@ namespace StreamlineUtilities
             catch (Exception Ex)
             {
                 // The above may fail is the task is somehow dead locked. Will look into this more.
-                LogStreamline.Exception("TaskWorker Error: Failed to dispose TaskWorker resources.", Ex);
+                LogUtilities.Exception("TaskWorker Error: Failed to dispose TaskWorker resources.", Ex);
             }
         }
     }

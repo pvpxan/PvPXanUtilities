@@ -107,7 +107,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("Error reading INI file: " + file, Ex);
+                LogUtilities.Exception("Error reading INI file: " + file, Ex);
                 return new List<INISection>();
             }
 
@@ -212,7 +212,7 @@ namespace StreamlineUtilities
             // File does not exists and the create paramater is false.
             if (File.Exists(file) == false && create == false)
             {
-                LogStreamline.LogEntry("INI write failure. File does not exist: " + file);
+                LogUtilities.LogEntry("INI write failure. File does not exist: " + file);
                 return false;
             }
 
@@ -367,7 +367,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("Error creating temp INI file. File: " + tempFile, Ex);
+                LogUtilities.Exception("Error creating temp INI file. File: " + tempFile, Ex);
                 return false;
             }
 
@@ -386,7 +386,7 @@ namespace StreamlineUtilities
                 }
                 catch (Exception Ex)
                 {
-                    LogStreamline.Exception("Error creating backup INI file. File: " + backFile, Ex);
+                    LogUtilities.Exception("Error creating backup INI file. File: " + backFile, Ex);
                 }
             }
 
@@ -397,7 +397,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("Error overwriting original INI file. File: " + file, Ex);
+                LogUtilities.Exception("Error overwriting original INI file. File: " + file, Ex);
                 return false;
             }
 

@@ -38,7 +38,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogStreamline.Exception("HTTP Exception: Error running Text File Reader task.", Ex);
+                LogUtilities.Exception("HTTP Exception: Error running Text File Reader task.", Ex);
             }
         }
 
@@ -56,7 +56,7 @@ namespace StreamlineUtilities
             catch (Exception Ex)
             {
                 httpReadComplete.Error = true;
-                LogStreamline.Exception("HTTP Exception: Text File Reader failed to get url extension.", Ex);
+                LogUtilities.Exception("HTTP Exception: Text File Reader failed to get url extension.", Ex);
                 return httpReadComplete;
             }
 
@@ -96,7 +96,7 @@ namespace StreamlineUtilities
             catch (Exception Ex)
             {
                 httpReadComplete.Error = true;
-                LogStreamline.Exception("HTTP Exception: Error with Text File Reader stream reader. Url: " + url, Ex);
+                LogUtilities.Exception("HTTP Exception: Error with Text File Reader stream reader. Url: " + url, Ex);
                 return httpReadComplete;
             }
             finally
