@@ -68,7 +68,17 @@ namespace StreamlineUtilities
                 {
                     ServicePointManager.ServerCertificateValidationCallback = new System.Net.Security.RemoteCertificateValidationCallback(acceptAllCertifications);
                 }
-                
+
+                // Provisions to allow for different security protocols.
+                ServicePointManager.SecurityProtocol =
+                    (SecurityProtocolType)48 |
+                    (SecurityProtocolType)192 |
+                    (SecurityProtocolType)768 |
+                    (SecurityProtocolType)3072 |
+                    (SecurityProtocolType)12288;
+
+                ServicePointManager.Expect100Continue = httpRequest.Expect100Continue;
+
                 httpConnectionData.WebRequest = (HttpWebRequest)WebRequest.Create(httpRequest.URL);
                 httpConnectionData.WebRequest.Timeout = Timeout * 1000;
                 httpConnectionData.WebRequest.ReadWriteTimeout = Timeout * 1000;
@@ -232,8 +242,8 @@ namespace StreamlineUtilities
 
                 string logError =
                     "HTTP Web Exception: Error Message: " + WebEx.Message + Environment.NewLine +
-                    "Response Headers:" + Environment.NewLine + responseHeadersText +
-                    "Response Message:" + Environment.NewLine + "   " + httpConnectionData.ResponseBody +
+                    "Response Headers:" + Environment.NewLine + responseHeadersText + // Does not need a new line as one is already added.
+                    "Response Message:" + Environment.NewLine + "   " + httpConnectionData.ResponseBody + Environment.NewLine +
                     "Request Url: " + Environment.NewLine + "   " + httpRequest.URL + Environment.NewLine +
                     "Request Headers:" + Environment.NewLine + requestHeadersText;
 
