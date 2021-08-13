@@ -279,7 +279,7 @@ namespace StreamlineUtilities
             }
             catch (Exception Ex)
             {
-                LogUtilities.Exception("HTTP Exception: TaskWorker Error. Failed to run timeout task.", Ex);
+                LogUtilities.Exception("HTTP Exception: TaskWorker Error. Failed to run download report progress task.", Ex);
             }
         }
 

@@ -15,9 +15,21 @@ namespace StreamlineUtilities
         public bool Authenticate { get; set; } = false;
         public bool AuthMask { get; set; } = true;
         public bool AcceptAllCerts { get; set; } = false;
+        public bool Expect100Continue { get; set; } = false;
         public bool RequestMask { get; set; } = false;
     }
-    
+
+    // Currently unused but may be used in the future.
+    public enum SecuritySuite
+    {
+        SystemDefault = 0,
+        Ssl3 = 48,
+        Tls = 192,
+        Tls11 = 768,
+        Tls12 = 3072,
+        Tls13 = 12288,
+    }
+
     public class HTTPHeader
     {
         public string Key { get; set; } = "";
