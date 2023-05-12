@@ -1,4 +1,4 @@
-# StreamlineMVVM
+# StreamlineUtilities
 * MVVM Framework comes with:
   * Logging Utility
   * Config File Handling
