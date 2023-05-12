@@ -1,5 +1,5 @@
 # StreamlineUtilities
-* MVVM Framework comes with:
+* StreamlineUtilities comes with:
   * Logging Utility
   * Config File Handling
   * INI File Handling
@@ -13,7 +13,7 @@
   * .net 5.0
 
 # Injection
-* Add Reference: StreamlineMVVM.dll
+* Add Reference: StreamlineUtilities.dll
 * Add Application Resource:
   * `<ResourceDictionary Source="pack://application:,,,/StreamlineMVVM;component/Templates/MergedResources.xaml"/>`
   * Add to XAML where resources are used:`xmlns:ext="clr-namespace:MVVMFramework;assembly=MVVMFramework"`
